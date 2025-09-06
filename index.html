@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="zh-CN" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-brain'%3E%3Cpath d='M9.5 2A2.5 2.5 0 0 1 12 4.5v1.13a1 1 0 0 0 .5 1.71 2.5 2.5 0 0 1 2.5 2.5c0 .52-.17.99-.44 1.37'/%3E%3Cpath d='M14.5 2A2.5 2.5 0 0 0 12 4.5v1.13a1 1 0 0 1-.5 1.71 2.5 2.5 0 0 0-2.5 2.5c0 .52.17.99.44 1.37'/%3E%3Cpath d='M5 18H3.5a2.5 2.5 0 0 1-2.5-2.5V14c0-1.1.9-2 2-2h1'/%3E%3Cpath d='M19 18h1.5a2.5 2.5 0 0 0 2.5-2.5V14c0-1.1-.9-2-2-2h-1'/%3E%3Cpath d='M12 13.3a1 1 0 0 0-1 1V16a1 1 0 0 0 1 1h0a1 1 0 0 0 1-1v-1.7a1 1 0 0 0-1-1Z'/%3E%3Cpath d='M9.55 13.44a2.5 2.5 0 0 1 0 4.12'/%3E%3Cpath d='M14.45 13.44a2.5 2.5 0 0 0 0 4.12'/%3E%3Cpath d='M12 22a2.5 2.5 0 0 1-2.5-2.5c0-.52.17.99-.44-1.37'/%3E%3Cpath d='M12 22a2.5 2.5 0 0 0 2.5-2.5c0-.52-.17.99-.44-1.37'/%3E%3C/svg%3E">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 赋能提效内部指引 - 拥抱 AI，重塑工作流</title>
+    
+    <!-- 引入 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 内联自定义样式和动画 -->
+    <style>
+        /* 从 App.css 提取的颜色变量 */
+        :root {
+            --radius: 0.625rem;
+            --background: oklch(1 0 0);
+            --foreground: oklch(0.145 0 0);
+            --card: oklch(1 0 0);
+            --card-foreground: oklch(0.145 0 0);
+            --popover: oklch(1 0 0);
+            --popover-foreground: oklch(0.145 0 0);
+            --primary: oklch(0.205 0 0);
+            --primary-foreground: oklch(0.985 0 0);
+            --secondary: oklch(0.97 0 0);
+            --secondary-foreground: oklch(0.205 0 0);
+            --muted: oklch(0.97 0 0);
+            --muted-foreground: oklch(0.556 0 0);
+            --accent: oklch(0.97 0 0);
+            --accent-foreground: oklch(0.205 0 0);
+            --destructive: oklch(0.577 0.245 27.325);
+            --border: oklch(0.922 0 0);
+            --input: oklch(0.922 0 0);
+            --ring: oklch(0.708 0 0);
+        }
+
+        /* 基础样式应用 */
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+        }
+
+        /* 自定义动画 */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* 导航栏模糊效果 */
+        .backdrop-blur-md {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <!-- SVG Icon: Brain -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v1.13a1 1 0 0 0 .5 1.71 2.5 2.5 0 0 1 2.5 2.5c0 .52-.17.99-.44 1.37"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v1.13a1 1 0 0 1-.5 1.71 2.5 2.5 0 0 0-2.5 2.5c0 .52.17.99.44 1.37"/><path d="M5 18H3.5a2.5 2.5 0 0 1-2.5-2.5V14c0-1.1.9-2 2-2h1"/><path d="M19 18h1.5a2.5 2.5 0 0 0 2.5-2.5V14c0-1.1-.9-2-2-2h-1"/><path d="M12 13.3a1 1 0 0 0-1 1V16a1 1 0 0 0 1 1h0a1 1 0 0 0 1-1v-1.7a1 1 0 0 0-1-1Z"/><path d="M9.55 13.44a2.5 2.5 0 0 1 0 4.12"/><path d="M14.45 13.44a2.5 2.5 0 0 0 0 4.12"/><path d="M12 22a2.5 2.5 0 0 1-2.5-2.5c0-.52.17.99-.44-1.37"/><path d="M12 22a2.5 2.5 0 0 0 2.5-2.5c0-.52-.17.99-.44-1.37"/></svg>
+                    <span class="text-xl font-bold text-slate-900">AI 赋能指引</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#intro" class="text-slate-600 hover:text-blue-600 transition-colors">开始</a>
+                    <a href="#tools" class="text-slate-600 hover:text-blue-600 transition-colors">推荐工具</a>
+                    <a href="#scenarios" class="text-slate-600 hover:text-blue-600 transition-colors">应用场景</a>
+                    <a href="#principles" class="text-slate-600 hover:text-blue-600 transition-colors">进阶之路</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="intro" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto text-center animate-fade-in-up">
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-6">拥抱 AI，重塑工作流</h1>
+            <p class="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
+                AI 时代已经到来，它不再是遥远的概念，而是能够切实提升我们日常工作效率、拓展视野的强大伙伴。 本指引旨在帮助团队同事们快速了解 AI 的能力，并聚焦于深度信息整理与产品日常工作两个核心工作场景，通过三个推荐工具，轻松开启你的 AI 赋能之旅。
+            </p>
+            <a href="#tools" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3 text-lg rounded-md">
+                开始探索
+                <!-- SVG Icon: ChevronRight -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="m9 18 6-6-6-6"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Core Process -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">AI 工具的核心使用流程</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="text-center p-6 border rounded-lg shadow-sm">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <!-- SVG Icon: Target -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-2">理解任务</h3>
+                    <p class="text-slate-600">清晰地定义你的目标是什么？(What)</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="text-center p-6 border rounded-lg shadow-sm">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <!-- SVG Icon: Lightbulb -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600"><path d="M15 14c.2-1 .7-1.7 1.5-2.5C17.7 10.2 18 9 18 7c0-2.2-1.8-4-4-4S10 4.8 10 7c0 2 .3 3.2 1.5 4.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-2">需求拆解</h3>
+                    <p class="text-slate-600">将大任务拆解成 AI 可以理解和执行的小步骤。(How)</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="text-center p-6 border rounded-lg shadow-sm">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <!-- SVG Icon: Zap -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-600"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-2">区分场景</h3>
+                    <p class="text-slate-600">根据任务类型，选择最合适的工具和方法。(Which Tool)</p>
+                </div>
+            </div>
+            <div class="mt-12 p-6 bg-blue-50 rounded-lg">
+                <p class="text-blue-800 text-center font-medium">
+                    <strong>核心提示：</strong>AI 不是魔法，它是一个能力放大器。你对任务的理解和拆解越清晰，AI 给你的结果就越精准。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-slate-900 mb-4">为什么推荐这三款工具？</h2>
+            <p class="text-center text-slate-600 mb-12 max-w-3xl mx-auto">市面上的 AI 工具层出不穷，为了方便大家快速上手，我们聚焦于以下三款外部工具，以及公司内部的 AI 体验平台。</p>
+            
+            <!-- 外部工具 -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Gemini Card -->
+                <div class="p-6 border rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white mb-4">
+                        <!-- SVG Icon: Brain -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v1.13a1 1 0 0 0 .5 1.71 2.5 2.5 0 0 1 2.5 2.5c0 .52-.17.99-.44 1.37"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v1.13a1 1 0 0 1-.5 1.71 2.5 2.5 0 0 0-2.5 2.5c0 .52.17.99.44 1.37"/><path d="M5 18H3.5a2.5 2.5 0 0 1-2.5-2.5V14c0-1.1.9-2 2-2h1"/><path d="M19 18h1.5a2.5 2.5 0 0 0 2.5-2.5V14c0-1.1-.9-2-2-2h-1"/><path d="M12 13.3a1 1 0 0 0-1 1V16a1 1 0 0 0 1 1h0a1 1 0 0 0 1-1v-1.7a1 1 0 0 0-1-1Z"/><path d="M9.55 13.44a2.5 2.5 0 0 1 0 4.12"/><path d="M14.45 13.44a2.5 2.5 0 0 0 0 4.12"/><path d="M12 22a2.5 2.5 0 0 1-2.5-2.5c0-.52.17.99-.44-1.37"/><path d="M12 22a2.5 2.5 0 0 0 2.5-2.5c0-.52-.17.99-.44-1.37"/></svg>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-semibold text-slate-900">Gemini</h3>
+                        <span class="bg-slate-900 text-white text-xs font-medium px-2.5 py-0.5 rounded-full">免费</span>
+                    </div>
+                    <p class="text-slate-500 mb-4">Google 出品，多模态能力强大，尤其擅长处理文档、音视频分析和创意性文本生成</p>
+                    <p class="text-sm text-slate-600 mb-4">有 Google 账号即可使用</p>
+                    <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center px-4 py-2 border border-slate-300 text-sm font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50">
+                        访问官网
+                        <!-- SVG Icon: ExternalLink -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <!-- Manus Card -->
+                <div class="p-6 border rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white mb-4">
+                        <!-- SVG Icon: Code -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-semibold text-slate-900">Manus</h3>
+                        <span class="bg-slate-900 text-white text-xs font-medium px-2.5 py-0.5 rounded-full">免费</span>
+                    </div>
+                    <p class="text-slate-500 mb-4">强大的通用 Agent，擅长执行代码、数据分析、网络自动化等复杂任务，能将想法变为现实</p>
+                    <p class="text-sm text-slate-600 mb-4">注册即可使用</p>
+                    <a href="https://manus.im" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center px-4 py-2 border border-slate-300 text-sm font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50">
+                        访问官网
+                        <!-- SVG Icon: ExternalLink -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+                <!-- Flowith Card -->
+                <div class="p-6 border rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white mb-4">
+                        <!-- SVG Icon: Zap -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-semibold text-slate-900">Flowith</h3>
+                        <span class="bg-slate-200 text-slate-800 text-xs font-medium px-2.5 py-0.5 rounded-full">需要付费</span>
+                    </div>
+                    <p class="text-slate-500 mb-4">优秀的工作流自动化平台，可以将多个 AI 任务串联起来，实现高度定制化的复杂流程</p>
+                    <p class="text-sm text-slate-600 mb-4">适合有深度、定制化需求的场景</p>
+                    <a href="https://flowith.io" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center px-4 py-2 border border-slate-300 text-sm font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50">
+                        访问官网
+                        <!-- SVG Icon: ExternalLink -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 内部专属推荐 -->
+            <div class="mt-12 p-8 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                <div class="flex-shrink-0">
+                    <!-- SVG Icon: Sparkles -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-300"><path d="m12 3-1.9 5.8-5.8 1.9 5.8 1.9 1.9 5.8 1.9-5.8 5.8-1.9-5.8-1.9z"/></svg>
+                </div>
+                <div class="flex-grow text-center md:text-left">
+                    <span class="inline-block bg-white/20 text-xs font-bold px-3 py-1 rounded-full mb-2">司内平台推荐</span>
+                    <h3 class="text-3xl font-bold">Venus 内部大模型平台</h3>
+                    <p class="mt-2 text-blue-100">免费体验 GPT-5, Gemini 2.5 Pro, Claude 等业界顶尖模型，安全合规，放心使用。</p>
+                </div>
+                <div class="flex-shrink-0 w-full md:w-auto">
+                    <a href="https://llmchat.woa.com/#/chat/dialog" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-bold rounded-md text-blue-700 bg-white hover:bg-blue-50 transition-colors">
+                        立即体验 (内网)
+                        <!-- SVG Icon: ChevronRight -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="m9 18 6-6-6-6"/></svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Scenarios Section -->
+    <section id="scenarios" class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">核心应用场景</h2>
+            
+            <!-- 场景一：深度研究 & 信息搜集 -->
+            <div class="mb-16">
+                <div class="flex items-center justify-center space-x-2 text-2xl font-semibold text-slate-800 mb-8">
+                    <!-- SVG Icon: Search -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <span>深度研究 & 信息搜集</span>
+                </div>
+                <div class="mb-8 p-6 bg-blue-50 rounded-lg">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-2">场景痛点</h3>
+                    <p class="text-blue-800 mb-4">需要快速研究一个新领域、分析一家公司或消化一篇长篇报告，但面临信息过载、筛选困难、耗时耗力的问题。</p>
+                    <h3 class="text-xl font-semibold text-blue-900 mb-2">AI 赋能思路</h3>
+                    <p class="text-blue-800 mb-4">利用 AI 强大的信息处理和归纳能力，快速从海量信息中提取、整理和分析关键要点，并以结构化的方式呈现（如报告、PPT、网页）。</p>
+                    <div class="bg-blue-100 p-4 rounded-lg">
+                        <p class="text-blue-900 font-medium"><strong>思维转变：</strong>从"自己阅读所有材料"转变为"指挥 AI 去阅读和提炼"。你的核心工作是提出精准问题和审核、整合 AI 的输出。</p>
+                    </div>
+                </div>
+                <div class="grid gap-6">
+                    <!-- Case 1 -->
+                    <div class="p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                <!-- SVG Icon: BookOpen -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900">
+                                    <a href="https://gemini.google.com/share/605eb4f55593" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center">
+                                        基于公开信息的研究
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                    </a>
+                                </h4>
+                                <span class="text-sm font-medium text-slate-600 border px-2 py-0.5 rounded-full">Gemini</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div><h5 class="font-semibold text-slate-900 mb-1">案例说明</h5><p class="text-slate-600">给定一个商业计划书（PDF），要求分析其信息的真实性、梳理核心数据，并评估其投资价值</p></div>
+                            <div><h5 class="font-semibold text-slate-900 mb-1">能力展示</h5><p class="text-slate-600">Gemini 2.5 Pro 可以深度理解 PDF 内容，结合其知识库进行事实核查和数据分析，最终形成一份结构化的分析报告</p></div>
+                            <div class="bg-green-50 p-4 rounded-lg"><h5 class="font-semibold text-green-900 mb-1">举一反三</h5><p class="text-green-800">你可以用它来分析竞品财报、解读行业研究报告、或者快速学习一篇复杂的学术论文</p></div>
+                        </div>
+                    </div>
+                    <!-- Case 2 -->
+                    <div class="p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                <!-- SVG Icon: Globe -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900">
+                                    <a href="https://flo.host/fTyfANl/" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center">
+                                        超长文本的信息整理与呈现
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                    </a>
+                                </h4>
+                                <span class="text-sm font-medium text-slate-600 border px-2 py-0.5 rounded-full">Flowith</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div><h5 class="font-semibold text-slate-900 mb-1">案例说明</h5><p class="text-slate-600">阅读一本超长的在线书籍，并将其内容精华制作成一个可交互的网页</p></div>
+                            <div><h5 class="font-semibold text-slate-900 mb-1">能力展示</h5><p class="text-slate-600">Flowith 能够访问网页链接，按指令阅读和提炼内容，并利用其代码能力生成一个前端网页来展示结果</p></div>
+                            <div class="bg-green-50 p-4 rounded-lg"><h5 class="font-semibold text-green-900 mb-1">举一反三</h5><p class="text-green-800">可以将多篇公众号文章整合成一个专题网站；可以将一个复杂的项目文档，生成一个带导航的知识库页面</p></div>
+                        </div>
+                    </div>
+                    <!-- Case 3 -->
+                    <div class="p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                <!-- SVG Icon: BarChart3 -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900">
+                                    <a href="https://teach.link/5sw2ii" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center">
+                                        定期追踪与分析
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                    </a>
+                                </h4>
+                                <span class="text-sm font-medium text-slate-600 border px-2 py-0.5 rounded-full">Flowith</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div><h5 class="font-semibold text-slate-900 mb-1">案例说明</h5><p class="text-slate-600">设定一个分析任务（如追踪特定行业新闻），让 AI 定期执行并将结果通过邮件发送</p></div>
+                            <div><h5 class="font-semibold text-slate-900 mb-1">能力展示</h5><p class="text-slate-600">这是工作流自动化的典型应用，将"信息搜集-分析-汇报"流程完全自动化，极大解放人力</p></div>
+                            <div class="bg-green-50 p-4 rounded-lg"><h5 class="font-semibold text-green-900 mb-1">举一反三</h5><p class="text-green-800">可以设置每周一自动获取竞品官网的更新动态，并发送摘要到团队邮箱；可以每日监控社交媒体上关于公司产品的讨论，并生成舆情报告</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 场景二：产品经理的日常工作 -->
+            <div>
+                <div class="flex items-center justify-center space-x-2 text-2xl font-semibold text-slate-800 mb-8">
+                    <!-- SVG Icon: Users -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span>产品经理的日常工作</span>
+                </div>
+                <div class="mb-8 p-6 bg-purple-50 rounded-lg">
+                    <h3 class="text-xl font-semibold text-purple-900 mb-2">场景痛点</h3>
+                    <p class="text-purple-800 mb-4">产品经理的工作流繁杂，涉及需求文档、原型设计、数据处理、工具开发等多个环节，许多任务重复且耗时。</p>
+                    <h3 class="text-xl font-semibold text-purple-900 mb-2">AI 赋能思路</h3>
+                    <p class="text-purple-800 mb-4">将 AI 作为"全能实习生"，把任务拆解后交给它执行。无论是画一张原型草图、写一个数据处理脚本，还是做一个可交互的 Demo，AI 都能快速响应。</p>
+                    <div class="bg-purple-100 p-4 rounded-lg">
+                        <p class="text-purple-900 font-medium"><strong>思维转变：</strong>从"我需要找开发/设计师帮忙"转变为"我先让 AI 试试"。你的核心工作是激发想象力，思考如何用 AI 将创意快速落地和验证。</p>
+                    </div>
+                </div>
+                <div class="grid gap-6">
+                    <!-- Case 1 -->
+                    <div class="p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                <!-- SVG Icon: Palette -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.47-1.125-.29-.289-.47-.68-.47-1.125s.18-.835.47-1.125c.29-.29.47-.68.47-1.125s-.18-.835-.47-1.125c-.29-.29-.47-.68-.47-1.125s.18-.835.47-1.125c.29-.29.47-.68.47-1.125s-.18-.835-.47-1.125c-.29-.289-.47-.68-.47-1.125C13.648 2.746 12.926 2 12 2z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900">
+                                    <a href="https://www.lovart.ai/r/g7nobnx" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center">
+                                        原型设计（图片形式）
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                    </a>
+                                </h4>
+                                <span class="text-sm font-medium text-slate-600 border px-2 py-0.5 rounded-full">Gemini</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div><h5 class="font-semibold text-slate-900 mb-1">案例说明</h5><p class="text-slate-600">通过自然语言描述，快速生成 App 或网页的界面原型草图</p></div>
+                            <div><h5 class="font-semibold text-slate-900 mb-1">能力展示</h5><p class="text-slate-600">Gemini 2.5 Pro 的多模态能力可以理解"一个登录页，包含XX和XX按钮"这类描述，并生成对应的图片。虽然不是高保真原型，但足以用于快速沟通和表达想法</p></div>
+                            <div class="bg-green-50 p-4 rounded-lg"><h5 class="font-semibold text-green-900 mb-1">举一反三</h5><p class="text-green-800">可以用来生成用户故事的场景插图、制作 PPT 里的示意图、或者设计一个活动海报的草稿</p></div>
+                        </div>
+                    </div>
+                    <!-- Case 2 -->
+                    <div class="p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                <!-- SVG Icon: Code -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900">
+                                    <a href="https://manus.im/share/qJ1sXXl8W9sqklCjlaq64T?replay=1" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center">
+                                        小工具开发
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                    </a>
+                                </h4>
+                                <span class="text-sm font-medium text-slate-600 border px-2 py-0.5 rounded-full">Manus</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div><h5 class="font-semibold text-slate-900 mb-1">案例说明</h5><p class="text-slate-600">需要一个压缩图片大小的脚本，直接向 Manus 提出需求，它会自动编写并执行代码，完成任务</p></div>
+                            <div><h5 class="font-semibold text-slate-900 mb-1">能力展示</h5><p class="text-slate-600">Manus 强大的代码生成和执行能力，让不懂编程的产品经理也能拥有"开发能力"，解决工作中的实际问题</p></div>
+                            <div class="bg-green-50 p-4 rounded-lg"><h5 class="font-semibold text-green-900 mb-1">举一反三</h5><p class="text-green-800">可以让它写一个脚本，自动解析用户反馈的 Excel 表格并分类；可以让它写一个爬虫，抓取应用商店的评论；可以让它做一个简单的 JSON 格式转换工具</p></div>
+                        </div>
+                    </div>
+                    <!-- Case 3 -->
+                    <div class="p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                <!-- SVG Icon: Globe -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900">
+                                    <a href="https://flo.host/Vy1A9TX/" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center">
+                                        Web 交互原型 Demo
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                    </a>
+                                </h4>
+                                <span class="text-sm font-medium text-slate-600 border px-2 py-0.5 rounded-full">Flowith</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div><h5 class="font-semibold text-slate-900 mb-1">案例说明</h5><p class="text-slate-600">需要一个简单的产品原型 Web 界面用于演示，Flowith 可以根据描述生成包含前端代码的可交互网页</p></div>
+                            <div><h5 class="font-semibold text-slate-900 mb-1">能力展示</h5><p class="text-slate-600">这比图片原型更进了一步，可以直接让用户点击交互，对于早期产品概念的验证非常高效</p></div>
+                            <div class="bg-green-50 p-4 rounded-lg"><h5 class="font-semibold text-green-900 mb-1">举一反三</h5><p class="text-green-800">可以快速搭建一个新功能的 Demo 页面给老板演示；可以做一个简单的 A/B 测试页面来收集用户偏好</p></div>
+                        </div>
+                    </div>
+                    <!-- Case 4 -->
+                    <div class="p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                <!-- SVG Icon: Database -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900">
+                                    <a href="https://manus.im/share/sljKGWhaSMPZSLGgfYs7El?replay=1" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center">
+                                        数据处理与洞察
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                    </a>
+                                </h4>
+                                <span class="text-sm font-medium text-slate-600 border px-2 py-0.5 rounded-full">Manus</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div><h5 class="font-semibold text-slate-900 mb-1">案例说明</h5><p class="text-slate-600">给定一个 Excel 文件，按要求进行数据处理和分析，计算标注员的一致性</p></div>
+                            <div><h5 class="font-semibold text-slate-900 mb-1">能力展示</h5><p class="text-slate-600">Manus 能够理解文件内容，执行复杂的数据处理逻辑，并输出分析结果。它将繁琐的数据清洗、计算、分析过程自动化，让我们可以更专注于业务洞察本身</p></div>
+                            <div class="bg-green-50 p-4 rounded-lg"><h5 class="font-semibold text-green-900 mb-1">举一反三</h5><p class="text-green-800">可以处理用户调研问卷的数据，并生成可视化图表；可以分析产品后台的日志数据，寻找异常模式；可以对销售数据进行多维度分析，发现增长点</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principles Section -->
+    <section id="principles" class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-slate-900 mb-4">从个人到团队：AI 赋能的进阶之路</h2>
+            <p class="text-center text-slate-600 mb-12 max-w-4xl mx-auto">我们正处在一个激动人心的技术变革时代。要真正让 AI 在整个团队中开花结果，我们需要将它视为一种新的工作方式，而不仅仅是工具。 结合 OpenAI 的最新洞察，我们提出以下核心要务：</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Principle Cards -->
+                <div class="p-6 border rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white mb-4">
+                        <!-- SVG Icon: Target -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-900">对齐 (Align)</h3>
+                    <p class="font-medium text-slate-500 mb-2">明确方向</p>
+                    <p class="text-slate-600">我们推广 AI 的目的是为了提质增效、开拓视野。高层管理者将带头在日常工作中使用 AI，为大家做出示范。</p>
+                </div>
+                <div class="p-6 border rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white mb-4">
+                        <!-- SVG Icon: Lightbulb -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5C17.7 10.2 18 9 18 7c0-2.2-1.8-4-4-4S10 4.8 10 7c0 2 .3 3.2 1.5 4.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-900">激活 (Activate)</h3>
+                    <p class="font-medium text-slate-500 mb-2">全员上手</p>
+                    <p class="text-slate-600">这份指引就是我们的"实际培训"材料。我们鼓励大家成立"AI 兴趣小组"，并指定乐于分享的同事作为"AI 大使"，带动大家在工作中进行常态化的 AI 实验。</p>
+                </div>
+                <div class="p-6 border rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white mb-4">
+                        <!-- SVG Icon: Share2 -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-900">放大 (Amplify)</h3>
+                    <p class="font-medium text-slate-500 mb-2">知识共享</p>
+                    <p class="text-slate-600">当你发现一个好的应用案例或 Prompt 技巧时，请及时在团队内分享。我们会建立共享知识库，避免信息孤岛，让每个人的经验都能赋能整个团队。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Notes -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-slate-900 mb-8">最后，也是最重要的</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="text-center p-6 border rounded-lg">
+                    <!-- SVG Icon: Lightbulb -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600 mx-auto mb-4"><path d="M15 14c.2-1 .7-1.7 1.5-2.5C17.7 10.2 18 9 18 7c0-2.2-1.8-4-4-4S10 4.8 10 7c0 2 .3 3.2 1.5 4.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                    <h3 class="text-xl font-semibold text-green-900">大胆尝试</h3>
+                    <p class="text-slate-600 mt-2">不要害怕犯错，大胆地去提问、去"折腾"这些 AI 工具。最好的学习方式就是在实践中学习。</p>
+                </div>
+                <div class="text-center p-6 border rounded-lg">
+                    <!-- SVG Icon: Target -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600 mx-auto mb-4"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                    <h3 class="text-xl font-semibold text-blue-900">认清边界</h3>
+                    <p class="text-slate-600 mt-2">AI 不是万能的。它的回答可能存在偏差，它的能力也有其边界。一切的开始，源于你对需求的清晰思考。</p>
+                </div>
+                <div class="text-center p-6 border rounded-lg">
+                    <!-- SVG Icon: Shield -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600 mx-auto mb-4"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+                    <h3 class="text-xl font-semibold text-red-900">安全第一</h3>
+                    <p class="text-slate-600 mt-2">在享受 AI 带来便利的同时，务必将数据安全放在首位。切勿上传公司核心敏感数据或客户隐私信息。</p>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <p class="text-xl text-slate-700 mb-6">让我们一起拥抱变化，在实践中探索 AI 的无限可能，共同创造更大的价值！</p>
+                <a href="#intro" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold px-8 py-3 rounded-md">
+                    重新开始探索
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <!-- SVG Icon: Brain -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v1.13a1 1 0 0 0 .5 1.71 2.5 2.5 0 0 1 2.5 2.5c0 .52-.17.99-.44 1.37"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v1.13a1 1 0 0 1-.5 1.71 2.5 2.5 0 0 0-2.5 2.5c0 .52.17.99.44 1.37"/><path d="M5 18H3.5a2.5 2.5 0 0 1-2.5-2.5V14c0-1.1.9-2 2-2h1"/><path d="M19 18h1.5a2.5 2.5 0 0 0 2.5-2.5V14c0-1.1-.9-2-2-2h-1"/><path d="M12 13.3a1 1 0 0 0-1 1V16a1 1 0 0 0 1 1h0a1 1 0 0 0 1-1v-1.7a1 1 0 0 0-1-1Z"/><path d="M9.55 13.44a2.5 2.5 0 0 1 0 4.12"/><path d="M14.45 13.44a2.5 2.5 0 0 0 0 4.12"/><path d="M12 22a2.5 2.5 0 0 1-2.5-2.5c0-.52.17.99-.44-1.37"/><path d="M12 22a2.5 2.5 0 0 0 2.5-2.5c0-.52-.17.99-.44-1.37"/></svg>
+                <span class="text-lg font-semibold">AI 赋能提效内部指引</span>
+            </div>
+            <p class="text-slate-400">拥抱 AI，重塑工作流 - 让每个人都能享受 AI 带来的效率提升</p>
+        </div>
+    </footer>
+
+</body>
+</html>
